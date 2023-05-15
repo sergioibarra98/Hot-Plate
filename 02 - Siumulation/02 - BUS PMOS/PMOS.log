@@ -1,0 +1,25 @@
+Circuit: * C:\Users\sergi\Desktop\Hot-Plate\02 - Siumulation\02 - BUS PMOS\PMOS.asc
+
+WARNING: Node N005 is floating.
+WARNING: Node N012 is floating.
+
+.OP point found by inspection.
+
+Date: Sun Apr 30 19:24:15 2023
+Total elapsed time: 0.099 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 2736
+traniter = 2736
+tranpoints = 1268
+accept = 1210
+rejected = 58
+matrix size = 36
+fillins = 34
+solver = Normal
+Avg thread counts: 1.2/1.5/1.5/1.2
+Matrix Compiler1: 4.05 KB object code size  1.5/1.1/[0.5]
+Matrix Compiler2: 3.38 KB object code size  0.6/0.8/[0.3]
+
