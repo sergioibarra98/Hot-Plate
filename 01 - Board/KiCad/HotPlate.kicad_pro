@@ -499,7 +499,7 @@
       "idf": "",
       "netlist": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "../../00 - Outputs/HotPlate_3D.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""
