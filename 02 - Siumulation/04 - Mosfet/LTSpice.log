@@ -1,0 +1,24 @@
+Circuit: * C:\Users\sergi\Desktop\Hot-Plate\02 - Siumulation\04 - Mosfet\LTSpice.asc
+
+Instance "m:u1:1": Length shorter than recommended for a level 3 MOSFET.
+Instance "m:u1:2": Length shorter than recommended for a level 3 MOSFET.
+Direct Newton iteration for .op point succeeded.
+
+Date: Thu Aug 10 22:59:25 2023
+Total elapsed time: 0.308 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 13606
+traniter = 13600
+tranpoints = 5905
+accept = 4429
+rejected = 1476
+matrix size = 17
+fillins = 4
+solver = Normal
+Avg thread counts: 1.0/1.1/1.1/1.0
+Matrix Compiler1: 1018 bytes object code size  1.4/2.9/[0.3]
+Matrix Compiler2: 1.25 KB object code size  0.9/2.9/[0.2]
+
