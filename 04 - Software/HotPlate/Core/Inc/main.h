@@ -57,6 +57,34 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define I2C_SDA_PD_Pin GPIO_PIN_9
+#define I2C_SDA_PD_GPIO_Port GPIOB
+#define GPIO_IN_PD_FLIP_Pin GPIO_PIN_1
+#define GPIO_IN_PD_FLIP_GPIO_Port GPIOA
+#define GPIO_IN_INT_PD_Pin GPIO_PIN_4
+#define GPIO_IN_INT_PD_GPIO_Port GPIOA
+#define GPIO_IN_PD_SAFE_Pin GPIO_PIN_5
+#define GPIO_IN_PD_SAFE_GPIO_Port GPIOA
+#define GPIO_OUT_GATE_HEATER_Pin GPIO_PIN_7
+#define GPIO_OUT_GATE_HEATER_GPIO_Port GPIOA
+#define ADC_IN_TEMP_Pin GPIO_PIN_1
+#define ADC_IN_TEMP_GPIO_Port GPIOB
+#define GPIO_IN_BTN_OKEY_Pin GPIO_PIN_2
+#define GPIO_IN_BTN_OKEY_GPIO_Port GPIOB
+#define GPIO_IN_BTN_UP_Pin GPIO_PIN_8
+#define GPIO_IN_BTN_UP_GPIO_Port GPIOA
+#define GPIO_IN_BTN_DOWN_Pin GPIO_PIN_9
+#define GPIO_IN_BTN_DOWN_GPIO_Port GPIOA
+#define GPIO_OUT__RST_OLED_Pin GPIO_PIN_6
+#define GPIO_OUT__RST_OLED_GPIO_Port GPIOC
+#define I2C_SCL_OLED_Pin GPIO_PIN_11
+#define I2C_SCL_OLED_GPIO_Port GPIOA
+#define I2C_SDA_OLED_Pin GPIO_PIN_12
+#define I2C_SDA_OLED_GPIO_Port GPIOA
+#define GPIO_LED_LIFE_Pin GPIO_PIN_15
+#define GPIO_LED_LIFE_GPIO_Port GPIOA
+#define I2C_SCL_PD_Pin GPIO_PIN_8
+#define I2C_SCL_PD_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

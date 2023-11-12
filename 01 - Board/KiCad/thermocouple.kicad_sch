@@ -4,6 +4,12 @@
 
   (paper "A4")
 
+  (title_block
+    (title "Hot Plate")
+    (date "2023-04-17")
+    (rev "AA")
+  )
+
   (lib_symbols
     (symbol "Amplifier_Operational:LM321" (pin_names (offset 0.127)) (in_bom yes) (on_board yes)
       (property "Reference" "U" (at 0 7.62 0)

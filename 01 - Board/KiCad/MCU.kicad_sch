@@ -4,6 +4,12 @@
 
   (paper "A4")
 
+  (title_block
+    (title "Hot Plate")
+    (date "2023-04-17")
+    (rev "AA")
+  )
+
   (lib_symbols
     (symbol "Connector:Conn_ARM_SWD_TagConnect_TC2030" (in_bom no) (on_board yes)
       (property "Reference" "J" (at 2.54 11.43 0)
