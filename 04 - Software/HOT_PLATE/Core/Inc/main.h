@@ -61,8 +61,12 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define I2C_PD_SDA_Pin GPIO_PIN_9
 #define I2C_PD_SDA_GPIO_Port GPIOB
+#define GPIO_TEST_Pin GPIO_PIN_2
+#define GPIO_TEST_GPIO_Port GPIOA
 #define GATE_PWM_Pin GPIO_PIN_7
 #define GATE_PWM_GPIO_Port GPIOA
+#define ADC_NTC_Pin GPIO_PIN_1
+#define ADC_NTC_GPIO_Port GPIOB
 #define GPIO_BTN_OK_Pin GPIO_PIN_2
 #define GPIO_BTN_OK_GPIO_Port GPIOB
 #define GPIO_BTN_OK_EXTI_IRQn EXTI2_3_IRQn

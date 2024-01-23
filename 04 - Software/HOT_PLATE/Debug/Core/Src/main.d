@@ -37,7 +37,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  C:/Users/sergi/STM32CubeIDE/workspace_1.12.0/HOT_PLATE/Drivers/OLED/ssd1306.h \
  C:/Users/sergi/STM32CubeIDE/workspace_1.12.0/HOT_PLATE/Drivers/OLED/ssd1306_conf.h \
  C:/Users/sergi/STM32CubeIDE/workspace_1.12.0/HOT_PLATE/Drivers/OLED/ssd1306_fonts.h \
- C:/Users/sergi/STM32CubeIDE/workspace_1.12.0/HOT_PLATE/Drivers/OLED/ssd1306_fonts.h
+ C:/Users/sergi/STM32CubeIDE/workspace_1.12.0/HOT_PLATE/Drivers/OLED/ssd1306_fonts.h \
+ ../Core/Inc/FIRFilter.h ../Core/Inc/PI.h
 ../Core/Inc/main.h:
 ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h:
 ../Core/Inc/stm32g0xx_hal_conf.h:
@@ -78,3 +79,5 @@ C:/Users/sergi/STM32CubeIDE/workspace_1.12.0/HOT_PLATE/Drivers/OLED/ssd1306.h:
 C:/Users/sergi/STM32CubeIDE/workspace_1.12.0/HOT_PLATE/Drivers/OLED/ssd1306_conf.h:
 C:/Users/sergi/STM32CubeIDE/workspace_1.12.0/HOT_PLATE/Drivers/OLED/ssd1306_fonts.h:
 C:/Users/sergi/STM32CubeIDE/workspace_1.12.0/HOT_PLATE/Drivers/OLED/ssd1306_fonts.h:
+../Core/Inc/FIRFilter.h:
+../Core/Inc/PI.h:
