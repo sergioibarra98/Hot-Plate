@@ -1,21 +1,38 @@
 #include "PI.h"
 
+void PID_Init(PIDREG3 *pid) {
+	/** Initial PID Temperature values */
+	pid->Up			= 0;
+	pid->Ui			= 0;
+	pid->Ud			= 0;
+	pid->OutPreSat	= 0;
+	pid->Out		= 0;
+	pid->SatErr		= 0;
+	pid->Up1		= 0;
+	pid->Kp			= 1;
+	pid->Ki			= 1;
+	pid->Kc			= 1;
+	pid->Kd			= 0;
+	pid->OutMax		= 1520;
+	pid->OutMin		= 1;
+}
 
-
-//void PID_Init(void)
-//{
-//	/** Initial PID Temperature values */
-//	PI_temp.Up			= 0;
-//	PI_temp.Ui			= 0;
-//	PI_temp.Ud			= 0;
-//	PI_temp.OutPreSat	= 0;
-//	PI_temp.Out			= 0;
-//	PI_temp.SatErr		= 0;
-//	PI_temp.Up1			= 0;
-//	PI_temp.Kp			= 0.05;
-//	PI_temp.Ki			= 0.01;
-//	PI_temp.Kc			= 0.1;
-//	PI_temp.Kd			= 0;
-//	PI_temp.OutMax		= 0.75;
-//	PI_temp.OutMin		= 0.0;
+//int16_t PID_Update(PIDREG3 *pid) {
+//	pid->Err = pid->Ref - pid->Fdb;
+//	pid->Up= ((pid->Err >> 9) + (pid->Err >> 11) + (pid->Err >> 15));
+//	pid->Ui= pid->Ui + ((pid->Up >> 7) + (pid->Up >> 9) + (pid->Up >> 13)) + ((pid->SatErr >> 7) + (pid->SatErr >> 9) + (pid->SatErr >> 13));
+//	pid->OutPreSat = pid->Up + pid->Ui;
+//	pid->Out = _IQsat(pid->OutPreSat, pid->OutMax, pid->OutMin);
+//	pid->SatErr = pid->Out - pid->OutPreSat;
+//	return pid->Out;
 //}
+
+int16_t PID_Update(PIDREG3 *pid) {																					\
+	pid->Err = pid->Ref - pid->Fdb; 									/* Compute the error */						\
+	pid->Up= (pid->Kp*pid->Err);										/* Compute the proportional output */		\
+	pid->Ui= pid->Ui + (pid->Ki*pid->Up) + (pid->Kc*pid->SatErr);				/* Compute the integral output */			\
+	pid->OutPreSat= pid->Up + pid->Ui;								/* Compute the pre-saturated output */		\
+	pid->Out = _IQsat(pid->OutPreSat, pid->OutMax, pid->OutMin);		/* Saturate the output */					\
+	pid->SatErr = pid->Out - pid->OutPreSat;
+	return pid->Out;
+}

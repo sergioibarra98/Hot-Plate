@@ -23,7 +23,7 @@ void FIRFilter_Init(FIRFilter *fir) {
 
 int16_t FIRFilter_Update(FIRFilter *fir, int16_t inp) {
 	//Store latest sample in buffer in degrees and transformed to fixed point (8,7)
-	inp = ((inp >> 5) - (inp >> 7) + (inp >> 9) - (inp >> 11) + 3) << 7;		//CSD 0.025027 * inp + 3.056846
+	inp = ((inp >> 5) - (inp >> 7) + (inp >> 9) - (inp >> 11) + 20) << 7;		//CSD 0.025027 * inp + 3.056846
 
 	fir->buf[fir->bufIndex] = inp;
 

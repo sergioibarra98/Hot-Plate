@@ -1830,7 +1830,7 @@
   )
 
   (symbol (lib_id "Device:C") (at 90.17 82.55 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (in_bom yes) (on_board yes) (dnp yes) (fields_autoplaced)
     (uuid 3b71ec10-1354-43c2-9d0e-7e5d6af03454)
     (property "Reference" "C204" (at 93.98 81.915 0)
       (effects (font (size 1.27 1.27)) (justify left))
@@ -2136,7 +2136,7 @@
   )
 
   (symbol (lib_id "Device:D_Schottky") (at 217.17 120.65 270) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (in_bom yes) (on_board yes) (dnp yes) (fields_autoplaced)
     (uuid 60397554-74f9-4c08-a91c-7ea92e68ad82)
     (property "Reference" "D102" (at 219.71 119.6975 90)
       (effects (font (size 1.27 1.27)) (justify left))

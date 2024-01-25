@@ -68,10 +68,11 @@ int16_t state = 0;
 BTN_STATUS btn = BTN_NONE;
 int16_t voltage;
 uint8_t tempVoltage[2];
-int16_t duty = 1520-1;
+int16_t duty;
 int16_t temp;
 char string[9];
 int16_t adc_buf[10];
+int16_t ref_Temp = 50;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -130,23 +131,7 @@ int main(void)
   //INITS
   ssd1306_Init();
   FIRFilter_Init(&fir);
-
-  //PID
-//  PID_Init();
-	PI_temp.Up			= 0;
-	PI_temp.Ui			= 0;
-	PI_temp.Ud			= 0;
-	PI_temp.OutPreSat	= 0;
-	PI_temp.Out			= 0;
-	PI_temp.SatErr		= 0;
-	PI_temp.Up1			= 0;
-	PI_temp.Kp			= 0.0025; //0.25
-	PI_temp.Ki			= 0.001; //5e-6
-	PI_temp.Kc			= 0.001;
-	PI_temp.Kd			= 0;
-	PI_temp.OutMax		= 0.95;
-	PI_temp.OutMin		= 0.0;
-
+  PID_Init(&PI_temp);
 
   //ACD calibration and trigger
   while(HAL_ADCEx_Calibration_Start(&hadc1) != HAL_OK);
@@ -170,17 +155,19 @@ int main(void)
 		  break;
 	  case 11:
 		  //Start PWM
-		  duty = _IQsat(PI_temp.Out*1600,1520,1);
-		  TIM3->CCR2 = (TIM_CCR2_CCR2 & (duty-1));
+		  TIM3->CCR2 = (TIM_CCR2_CCR2 & (duty - 1));
 		  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
 		  //Refresh Screen
-
 		  sprintf(string, "%5d~C", temp);
 		  ssd1306_WriteScreen(string, Font_11x18);
 
 		  break;
 	  case 2:
 		  ssd1306_WriteScreen("CONFIG", Font_11x18);
+		  break;
+	  case 21:
+		  sprintf(string, "%5d~C", ref_Temp);
+		  ssd1306_WriteScreen(string, Font_11x18);
 		  break;
 	  case 3:
 		  ssd1306_WriteScreen("VIEW", Font_11x18);
@@ -213,17 +200,6 @@ int main(void)
 				  state = 0;
 			  }
 			  break;
-		  case 11:
-			  if(btn == BTN_OK){
-				  state = 1;
-			  } else if (btn == BTN_UP){
-				  duty = duty + 4;
-			  } else if (btn == BTN_DOWN){
-				  duty = duty - 4;
-			  } else {
-				  state = 0;
-			  }
-			  break;
 		  case 2:
 			  if(btn == BTN_OK){
 				  state = 21;
@@ -231,6 +207,17 @@ int main(void)
 				  state = 3;
 			  } else if (btn == BTN_DOWN){
 				  state = 1;
+			  } else {
+				  state = 0;
+			  }
+			  break;
+		  case 21:
+			  if(btn == BTN_OK){
+				  state = 2;
+			  } else if (btn == BTN_UP){
+				  ref_Temp++;
+			  } else if (btn == BTN_DOWN){
+				  ref_Temp--;
 			  } else {
 				  state = 0;
 			  }
@@ -492,9 +479,9 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 0;
+  htim1.Init.Prescaler = 32;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 800-1;
+  htim1.Init.Period = 1000-1;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
@@ -675,15 +662,15 @@ void HAL_GPIO_EXTI_Falling_Callback(uint16_t GPIO_Pin) {
 	}
 }
 
-int16_t debug_temp = 30;
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc){
 	HAL_GPIO_WritePin(GPIO_TEST_GPIO_Port, GPIO_TEST_Pin, GPIO_PIN_SET);
 	int16_t adcValue = HAL_ADC_GetValue(hadc);
 	temp = FIRFilter_Update(&fir, adcValue);
 
-	PI_temp.Ref = debug_temp;
+	PI_temp.Ref = ref_Temp;
 	PI_temp.Fdb = temp;
-	PID_MACRO (PI_temp);
+//	PID_MACRO (PI_temp);
+	duty = PID_Update(&PI_temp);
 	HAL_GPIO_WritePin(GPIO_TEST_GPIO_Port, GPIO_TEST_Pin, GPIO_PIN_RESET);
 }
 
